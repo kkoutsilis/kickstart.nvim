@@ -3,7 +3,7 @@ return {
     'neovim/nvim-lspconfig',
     dependencies = {
       -- Automatically install LSPs and related tools to stdpath for neovim
-      'williamboman/mason.nvim',
+      { 'williamboman/mason.nvim', config = true }, --NOTE: Must be leaded before dependants
       'williamboman/mason-lspconfig.nvim',
       'WhoIsSethDaniel/mason-tool-installer.nvim',
 
@@ -112,6 +112,15 @@ return {
               callback = vim.lsp.buf.clear_references,
             })
           end
+          -- The following autocommand is used to enable inlay hints in your
+          -- code, if the language server you are using supports them
+          --
+          -- This may be unwanted, since they displace some of your code
+          if client and client.server_capabilities.inlayHintProvider and vim.lsp.inlay_hint then
+            map('<leader>th', function()
+              vim.lsp.inlay_hint.enable(0, not vim.lsp.inlay_hint.is_enabled())
+            end, '[T]oggle Inlay [H]ints')
+          end
         end,
       })
 
@@ -138,18 +147,18 @@ return {
         --    https://github.com/pmizio/typescript-tools.nvim
         --
         gopls = {},
-        pyright = {},
-        -- rust_analyzer = {},
-        tsserver = {},
-        html = { filetypes = { 'html', 'templ' } },
-        templ = { filetypes = { 'templ' } },
-        tailwindcss = {},
+        -- pylsp = {},
+        rust_analyzer = {},
+        -- tsserver = {},
+        -- html = { filetypes = { 'html', 'templ' } },
+        -- templ = { filetypes = { 'templ' } },
+        -- tailwindcss = {},
         kotlin_language_server = {},
-        dockerls = {},
-        docker_compose_language_service = {},
+        -- dockerls = {},
+        -- docker_compose_language_service = {},
         lua_ls = {
           -- cmd = {...},
-          -- filetypes { ...},
+          -- filetypes = {...},
           -- capabilities = {},
           settings = {
             Lua = {
