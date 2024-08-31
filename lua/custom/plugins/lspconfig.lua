@@ -147,6 +147,7 @@ return {
         --    https://github.com/pmizio/typescript-tools.nvim
         --
         gopls = {},
+        dartls = {},
         pyright = {},
         rust_analyzer = {},
         tsserver = {},
