@@ -147,16 +147,8 @@ return {
         --    https://github.com/pmizio/typescript-tools.nvim
         --
         gopls = {},
-        dartls = {},
-        pyright = {},
-        rust_analyzer = {},
-        tsserver = {},
-        -- html = { filetypes = { 'html', 'templ' } },
-        -- templ = { filetypes = { 'templ' } },
-        -- tailwindcss = {},
         kotlin_language_server = {},
         dockerls = {},
-        -- docker_compose_language_service = {},
         lua_ls = {
           -- cmd = {...},
           -- filetypes = {...},
